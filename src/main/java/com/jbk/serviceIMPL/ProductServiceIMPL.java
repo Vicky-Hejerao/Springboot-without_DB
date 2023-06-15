@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -116,9 +117,17 @@ public class ProductServiceIMPL implements ProductService {
 	@Override
 	public Product getMaxPriceProduct() {
 		List<Product> list = getaAllProduct();
-		Product product = list.stream().max(Comparator.comparingDouble(Product::getProductPrice)).get();
+		//Product product = list.stream().max(Comparator.comparingDouble(Product::getProductPrice)).get();
+		Product maxPriceProduct=null;
+		double max=0;
+		for (Product product : list) {
+			if(max<product.getProductPrice()) {
+				max=product.getProductPrice();
+				maxPriceProduct=product;
+			}
+		}
 
-		return product;
+		return maxPriceProduct;
 	}
 		
 	
