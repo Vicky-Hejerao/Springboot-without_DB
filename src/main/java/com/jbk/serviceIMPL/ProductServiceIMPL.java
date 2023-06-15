@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -102,26 +103,37 @@ public class ProductServiceIMPL implements ProductService {
 	}
 	@Override
 	public double countSumOfProductPrice() {
-	
-		return 0;
+		List<Product> list=getaAllProduct();
+	        return list.stream() .mapToDouble(Product::getProductPrice).sum();
+	        
+		/*List<Product> list = getaAllProduct();
+		Double sumOfProductPrice = list.stream().map(product -> product.getProductPrice()).reduce(0d,
+				(sum, price) -> sum + price);
+		return sumOfProductPrice;*/
+	                	
 	}
 
 	@Override
 	public Product getMaxPriceProduct() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Product> list = getaAllProduct();
+		Product product = list.stream().max(Comparator.comparingDouble(Product::getProductPrice)).get();
+
+		return product;
 	}
+		
+	
 
 	@Override
 	public Product getMinPriceProduct() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Product> list = getaAllProduct();
+		Product product = list.stream().min(Comparator.comparingDouble(Product::getProductPrice)).get();
+		return product;
 	}
 
 	@Override
 	public int getTotalCountOfProdcut() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return getaAllProduct().size();
 	}
 
 	@Override
@@ -142,5 +154,16 @@ public class ProductServiceIMPL implements ProductService {
         //System.out.println("Ascending order => " + sortProductASC);
 		
 	}
+
+	@Override
+	public List<Product> minmaxProductPrice(double minPrice, double maxPrice) {
+		List<Product> list = getaAllProduct();
+		return list.stream()
+                .filter(product -> product.getProductPrice() >= minPrice && product.getProductPrice() <= maxPrice)
+                .collect(Collectors.toList());
+		
+	}
+
+	
 
 }

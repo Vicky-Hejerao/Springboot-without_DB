@@ -114,4 +114,34 @@ public class ProductRestController {
 			return sortPriceDSC;
 		}		
 	}
+  	@GetMapping("/sumofAllProductPrice")
+  	public double sumofAllProduct(){
+  		double countSumOfProductPrice = service.countSumOfProductPrice();
+		return countSumOfProductPrice;
+  	}
+	@GetMapping("/getMaxPriceProduct")
+  	public Product getMaxPriceProduct(){
+  		Product maxPriceProduct = service.getMaxPriceProduct();
+  		return maxPriceProduct;
+  	}
+	@GetMapping("/getMinPriceProduct")
+	public Product getMinPriceProduct() {
+		Product minPriceProduct = service.getMinPriceProduct();
+		
+		return minPriceProduct;
+		
+	}
+	@GetMapping("/getTotalCountOfProdcut")
+	public int getTotalCountOfProdcut() {
+		int totalCountOfProdcut = service.getTotalCountOfProdcut();
+		
+		return totalCountOfProdcut;
+		
+		
+	}
+	@GetMapping("/minmaxProductPrice/{minPrice}/{maxPrice}")
+	public List<Product> minmaxProductPrice(@PathVariable double minPrice, @PathVariable double maxPrice) {
+		List<Product> minmaxProductPrice = service.minmaxProductPrice(minPrice, maxPrice);		
+		return minmaxProductPrice;	
+	}
 }

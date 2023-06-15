@@ -23,4 +23,5 @@ public interface ProductService {
 	public Product getMaxPriceProduct();
 	public Product getMinPriceProduct();
 	public int getTotalCountOfProdcut();
+	public List<Product> minmaxProductPrice(double minPrice, double maxPrice);
 }
