@@ -33,7 +33,7 @@ public class ProductRestController {
 		boolean isAdded = service.saveProduct(product);
 		
 		if(isAdded) {
-			return "Saved";
+			return "Saved Product";
 		}else {
 			return "Already Exists";
 		}
