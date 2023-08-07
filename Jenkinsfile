@@ -10,7 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/Vicky-Hejerao/Springboot-without_DB.git'
+                git 'https://github.com/Vicky-Hejerao/Springboot-without_DB'
 
                 // Run Maven on a Windows agent
                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
