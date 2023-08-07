@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         // Use the defined Maven tool installation
-        maven name: 'M3', jdk: 'MAVEN_HOME'
+        maven name: 'MAVAN_HOME', jdk: 'JAVA_HOME'
     }
 
     stages {
